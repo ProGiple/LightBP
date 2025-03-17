@@ -1,0 +1,66 @@
+page_order:
+  - 'page1'
+levels:
+  1: 100
+  2: 250
+  3: 400
+exp_farm:
+  kill:
+    amount: 3
+    cooldown: 60 # секунд после получения опыта
+    exp: 1-8
+    whitelist:
+      - PLAYER
+      - SHEEP
+  chat:
+    amount: 15
+    cooldown: 15 # секунд
+    exp: 1-8
+  blockbreak:
+    amount: 32
+    exp: 1-10
+    cooldown: 10
+    whitelist:
+      - DIAMOND_ORE
+  playTime:
+    amount: 2 # минуты
+    exp: 1-30
+    cooldown: 60
+items:
+  level_uncompleted:
+    material: GRAY_STAINED_GLASS_PANE
+    displayName: "&7{level} уровень"
+    lore: []
+  level_started:
+    material: YELLOW_STAINED_GLASS_PANE
+    displayName: "&eТекущий уровень » {level}"
+    lore: [ ]
+  level_completed:
+    material: LIME_STAINED_GLASS_PANE
+    displayName: "&aПройденный уровень » {level}"
+    lore: [ ]
+  reward_not_opened: TNT_MINECART
+  reward_opened: HOPPER_MINECART
+  reward_collected: MINECART
+messages:
+  reload:
+    - "reloaded"
+  noPermission:
+    - "no permission"
+  noPremium:
+    - "no premium"
+  rewardNotOpened:
+    - "reward not opened"
+  rewardAlreadyCollected:
+    - "reward already collected!"
+  noNextPage:
+    - "no next pages!"
+  noBackPage:
+    - "no back pages!"
+  editInfo:
+    - "{0}"
+  upExp:
+    - "{0} {1} {2} {3} {4}"
+  collectReward: []
+  completeLevel:
+    - "{0} {1}"

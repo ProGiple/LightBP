@@ -1,0 +1,24 @@
+name: LightBP
+version: '1.0.1.1'
+main: org.satellite.dev.progiple.lightbp.LightBP
+api-version: '1.16'
+depend:
+  - LunaSpring
+  - NBTAPI
+commands:
+  lightbp:
+    usage: /lpb reload/addExp/setExp/addLevel/setLevel <player> <amount>
+    aliases:
+      - bp
+      - lbp
+      - lightbattlepass
+      - lpass
+      - bpass
+      - pass
+      - lbpass
+      - battlep
+permissions:
+  lightbp.admin:
+    default: op
+  lightbp.premium:
+    default: false
