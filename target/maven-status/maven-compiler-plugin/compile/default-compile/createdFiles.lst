@@ -3,7 +3,6 @@ org\satellite\dev\progiple\lightbp\LightBP.class
 org\satellite\dev\progiple\lightbp\configs\Config.class
 org\satellite\dev\progiple\lightbp\configs\PageConfig.class
 org\satellite\dev\progiple\lightbp\menu\buttons\Button.class
-org\satellite\dev\progiple\lightbp\Placeholders.class
 org\satellite\dev\progiple\lightbp\menu\buttons\IButton.class
 org\satellite\dev\progiple\lightbp\menu\ButtonSetter$2.class
 org\satellite\dev\progiple\lightbp\configs\PlayerData.class

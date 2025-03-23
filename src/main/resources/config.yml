@@ -20,6 +20,8 @@ exp_farm:
     amount: 32
     exp: 1-10
     cooldown: 10
+    disabled_regions_for_level:
+      newbie1: 10 # минимальный уровень для выключения получения опыта
     whitelist:
       - DIAMOND_ORE
   playTime:
@@ -43,6 +45,8 @@ items:
   reward_opened: HOPPER_MINECART
   reward_collected: MINECART
 messages:
+  reward_is_collected: "&a (Забрано)"
+  reward_denied: "&c (Недоступно)"
   reload:
     - "reloaded"
   noPermission:

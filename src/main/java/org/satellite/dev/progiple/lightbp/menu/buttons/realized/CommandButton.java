@@ -9,10 +9,9 @@ import java.util.List;
 
 public class CommandButton extends Button {
     private final List<String> commands;
-    public CommandButton(ConfigurationSection section, Player player) {
+    public CommandButton(ConfigurationSection section) {
         super(section);
         this.commands = section.getStringList("commands");
-        this.updateLore(player);
     }
 
     @Override

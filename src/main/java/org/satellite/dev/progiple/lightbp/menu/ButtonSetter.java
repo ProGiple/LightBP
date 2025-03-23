@@ -5,7 +5,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.novasparkle.lunaspring.Menus.MenuManager;
-import org.novasparkle.lunaspring.Util.Utils;
+import org.novasparkle.lunaspring.Util.LunaMath;
 import org.satellite.dev.progiple.lightbp.Status;
 import org.satellite.dev.progiple.lightbp.configs.PageConfig;
 import org.satellite.dev.progiple.lightbp.configs.PlayerData;
@@ -24,6 +24,11 @@ public class ButtonSetter {
         if (playerData == null) playerData = new PlayerData(nick);
         int playerLevel = playerData.getInt("level");
 
+        this.registerItems(playerData, pageConfig, playerLevel, player);
+        this.registerLevels(playerData, pageConfig, playerLevel);
+    }
+
+    private void registerItems(PlayerData playerData, PageConfig pageConfig, int playerLevel, Player player) {
         ConfigurationSection section = pageConfig.getSection("items.clickable");
         if (section != null) for (String key : section.getKeys(false)) {
             ConfigurationSection itemSection = section.getConfigurationSection(key);
@@ -31,7 +36,7 @@ public class ButtonSetter {
 
             Button button = null;
             if (key.equalsIgnoreCase("NEXT_PAGE")) {
-                button = new NextPageButton(itemSection, pageConfig.getId(), player);
+                button = new NextPageButton(itemSection, pageConfig.getId());
             }
             else if (key.equalsIgnoreCase("BACK_PAGE")) {
                 button = new BackPageButton(itemSection, pageConfig.getId());
@@ -60,16 +65,16 @@ public class ButtonSetter {
                 }
             }
             else if (key.startsWith("REWARD-")) {
-                int level = Utils.toInt(key.replace("REWARD-", ""));
+                int level = LunaMath.toInt(key.replace("REWARD-", ""));
                 Status status = playerData.getIntList("collected_default_rewards").contains(level) ? Status.COMPLETED :
                         (playerLevel >= level ? Status.THIS_IS : Status.NOT_OPENED);
-                button = new RewardButton(itemSection, status, player, false);
+                button = new RewardButton(itemSection, status, false);
             }
             else if (key.startsWith("PREMIUM_REWARD-")) {
-                int level = Utils.toInt(key.replace("PREMIUM_REWARD-", ""));
+                int level = LunaMath.toInt(key.replace("PREMIUM_REWARD-", ""));
                 Status status = playerData.getIntList("collected_premium_rewards").contains(level) ? Status.COMPLETED :
                         (playerLevel >= level ? Status.THIS_IS : Status.NOT_OPENED);
-                button = new RewardButton(itemSection, status, player, true);
+                button = new RewardButton(itemSection, status, true);
             }
             else {
                 String[] name = key.split("-");
@@ -82,20 +87,25 @@ public class ButtonSetter {
                     if (!hasPerm && requiredPermission || hasPerm && !requiredPermission) continue;
                 }
 
-                button = new CommandButton(itemSection, player);
+                button = new CommandButton(itemSection);
             }
 
-            if (button != null) this.buttons.add(button);
+            if (button != null) {
+                button.updateLore(player);
+                this.buttons.add(button);
+            }
         }
+    }
 
+    private void registerLevels(PlayerData playerData, PageConfig pageConfig, int playerLevel) {
         ConfigurationSection levelSection = pageConfig.getSection("items.levels");
         int exp = playerData.getInt("exp");
         for (String key : levelSection.getKeys(false)) {
             byte slot = (byte) levelSection.getInt(key);
-            int level = Utils.toInt(key);
+            int level = LunaMath.toInt(key);
 
             LevelButton levelButton = new LevelButton(level - 1 == playerLevel ? Status.THIS_IS :
-                    (playerLevel > level - 1 ? Status.COMPLETED : Status.NOT_OPENED), level, exp, slot, player);
+                    (playerLevel > level - 1 ? Status.COMPLETED : Status.NOT_OPENED), level, exp, slot);
             this.buttons.add(levelButton);
         }
     }

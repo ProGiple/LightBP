@@ -1,6 +1,5 @@
 package org.satellite.dev.progiple.lightbp.menu.buttons.realized;
 
-import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.novasparkle.lunaspring.Menus.MenuManager;
@@ -13,13 +12,12 @@ import java.util.List;
 
 public class NextPageButton extends Button {
     private final String nextPageId;
-    public NextPageButton(ConfigurationSection section, String pageConfigId, OfflinePlayer player) {
+    public NextPageButton(ConfigurationSection section, String pageConfigId) {
         super(section);
 
         List<String> list = Config.getList("page_order");
         int index = list.indexOf(pageConfigId);
         this.nextPageId = list.size() > index + 1 ? list.get(index + 1) : null;
-        this.updateLore(player);
     }
 
     @Override

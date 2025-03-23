@@ -4,12 +4,11 @@ import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.novasparkle.lunaspring.Util.Utils;
+import org.novasparkle.lunaspring.Util.LunaMath;
 import org.satellite.dev.progiple.lightbp.configs.Config;
 import org.satellite.dev.progiple.lightbp.configs.PlayerData;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Getter
 public abstract class BasicHandler implements Listener {
@@ -19,8 +18,8 @@ public abstract class BasicHandler implements Listener {
     private String[] exp;
     private int maxTimes;
     private List<String> whitelist;
-    private int times = 0;
 
+    private final Map<String, Integer> times = new HashMap<>();
     private final String sectionId;
     public BasicHandler(String sectionId) {
         this.sectionId = sectionId;
@@ -43,17 +42,20 @@ public abstract class BasicHandler implements Listener {
         if (player == null || this.cooldown.cancel(player) ||
                 (this.whitelist != null && !this.whitelist.isEmpty() && !this.whitelist.contains(value))) return;
 
-        if (this.times + 1 < this.maxTimes) {
-            this.times++;
+        String nick = player.getName();
+        int valueTime = this.times.getOrDefault(nick, 0);
+        if (valueTime + 1 < this.maxTimes) {
+            this.times.put(nick, valueTime + 1);
             return;
         }
 
-        int exp = Utils.getRandom().nextInt(Utils.toInt(this.exp[1]) - Utils.toInt(this.exp[0])) + Utils.toInt(this.exp[0]);
+        int exp = LunaMath.getRandom().nextInt(
+                LunaMath.toInt(this.exp[1]) - LunaMath.toInt(this.exp[0])) + LunaMath.toInt(this.exp[0]);
         PlayerData playerData = PlayerData.getData().get(player.getName());
         if (playerData == null) playerData = new PlayerData(player.getName());
         playerData.addExp(player, exp, true);
 
-        this.times = 0;
+        this.times.put(nick, 0);
         this.cooldown.put(player);
     }
 }

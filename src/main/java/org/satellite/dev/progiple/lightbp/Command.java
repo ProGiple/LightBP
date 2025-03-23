@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.novasparkle.lunaspring.Menus.MenuManager;
-import org.novasparkle.lunaspring.Util.Utils;
+import org.novasparkle.lunaspring.Util.LunaMath;
 import org.satellite.dev.progiple.lightbp.configs.Config;
 import org.satellite.dev.progiple.lightbp.configs.PageConfig;
 import org.satellite.dev.progiple.lightbp.configs.PlayerData;
@@ -31,7 +31,7 @@ public class Command implements TabExecutor {
                     PlayerData playerData = PlayerData.getData().get(strings[1]);
                     if (playerData == null) playerData = new PlayerData(strings[1]);
 
-                    int amount = Utils.toInt(strings[2]);
+                    int amount = LunaMath.toInt(strings[2]);
                     switch (strings[0]) {
                         case "setExp" -> {
                             playerData.set("exp", 0);

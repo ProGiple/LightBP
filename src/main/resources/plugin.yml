@@ -5,6 +5,9 @@ api-version: '1.16'
 depend:
   - LunaSpring
   - NBTAPI
+  - WorldGuard
+softdepend:
+  - PlaceholderAPI
 commands:
   lightbp:
     usage: /lpb reload/addExp/setExp/addLevel/setLevel <player> <amount>

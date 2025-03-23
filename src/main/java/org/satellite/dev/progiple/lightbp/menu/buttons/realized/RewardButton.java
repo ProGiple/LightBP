@@ -1,11 +1,10 @@
 package org.satellite.dev.progiple.lightbp.menu.buttons.realized;
 
-import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.novasparkle.lunaspring.Util.LunaMath;
 import org.novasparkle.lunaspring.Util.Utils;
 import org.satellite.dev.progiple.lightbp.Status;
 import org.satellite.dev.progiple.lightbp.configs.Config;
@@ -20,20 +19,26 @@ public class RewardButton extends Button {
     private final List<String> commands;
     private final int level;
     private Status status;
-    public RewardButton(ConfigurationSection section, Status status, OfflinePlayer player, boolean isPremium) {
+    public RewardButton(ConfigurationSection section, Status status, boolean isPremium) {
         super(Material.getMaterial(Config.getString(String.format("items.%s",
                         status == Status.NOT_OPENED ? "reward_not_opened" : (status == Status.THIS_IS ?
                                 "reward_opened" : "reward_collected")))),
                 section.getString("displayName"),
                 section.getStringList("lore"), 1,
                 (byte) section.getInt("slot"));
-        this.level = Utils.toInt(section.getName()
+        this.setGlowing(section.getBoolean("enchanted"));
+
+        this.level = LunaMath.toInt(section.getName()
                 .replace("PREMIUM_REWARD-", "")
                 .replace("REWARD-", ""));
         this.isPremium = isPremium;
         this.commands = section.getStringList("commands");
         this.status = status;
-        this.updateLore(player);
+
+        if (this.status == Status.COMPLETED)
+            this.setDisplayName(this.getDisplayName() + Utils.color(Config.getString("messages.reward_is_collected")));
+        else if (this.status == Status.NOT_OPENED)
+            this.setDisplayName(this.getDisplayName() + Utils.color(Config.getString("messages.reward_denied")));
     }
 
     @Override

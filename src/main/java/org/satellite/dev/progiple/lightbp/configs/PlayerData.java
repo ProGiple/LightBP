@@ -4,7 +4,7 @@ import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.novasparkle.lunaspring.Configuration.Configuration;
-import org.novasparkle.lunaspring.Util.Utils;
+import org.novasparkle.lunaspring.Util.LunaMath;
 import org.satellite.dev.progiple.lightbp.LightBP;
 
 import java.io.File;
@@ -88,7 +88,7 @@ public class PlayerData {
 
     public boolean isMaxLevel(int level) {
         ConfigurationSection section = Config.getSection("levels");
-        List<Integer> list = section.getKeys(false).stream().map(Utils::toInt).collect(Collectors.toList());
+        List<Integer> list = section.getKeys(false).stream().map(LunaMath::toInt).collect(Collectors.toList());
         return level >= Collections.max(list);
     }
 }
