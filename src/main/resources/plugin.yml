@@ -20,6 +20,14 @@ commands:
       - pass
       - lbpass
       - battlep
+      - battlepass
+  toggleexp:
+    aliases:
+      - te
+      - toggle
+      - bptoggle
+      - exptoggle
+      - et
 permissions:
   lightbp.admin:
     default: op

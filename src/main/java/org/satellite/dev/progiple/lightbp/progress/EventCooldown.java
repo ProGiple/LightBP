@@ -1,7 +1,7 @@
 package org.satellite.dev.progiple.lightbp.progress;
 
 import org.bukkit.entity.Player;
-import org.novasparkle.lunaspring.Events.CooldownPrevent;
+import org.novasparkle.lunaspring.API.Events.CooldownPrevent;
 
 public class EventCooldown extends CooldownPrevent<Player> {
     public EventCooldown(int seconds) {

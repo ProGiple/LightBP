@@ -19,8 +19,9 @@ org\satellite\dev\progiple\lightbp\menu\buttons\realized\NextPageButton.class
 org\satellite\dev\progiple\lightbp\progress\realized\BlockBreakHandler.class
 org\satellite\dev\progiple\lightbp\progress\Runnable.class
 org\satellite\dev\progiple\lightbp\menu\buttons\realized\BackPageButton.class
-org\satellite\dev\progiple\lightbp\Command.class
 org\satellite\dev\progiple\lightbp\menu\buttons\realized\RewardButton.class
+org\satellite\dev\progiple\lightbp\commands\ToggleCommand.class
+org\satellite\dev\progiple\lightbp\commands\Command.class
 org\satellite\dev\progiple\lightbp\menu\buttons\realized\LevelButton.class
 org\satellite\dev\progiple\lightbp\progress\EventCooldown.class
 org\satellite\dev\progiple\lightbp\progress\realized\ChatHandler.class

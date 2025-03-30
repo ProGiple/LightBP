@@ -2,8 +2,8 @@ package org.satellite.dev.progiple.lightbp.configs;
 
 import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
-import org.novasparkle.lunaspring.Configuration.IConfig;
-import org.novasparkle.lunaspring.Util.Utils;
+import org.novasparkle.lunaspring.API.Configuration.IConfig;
+import org.novasparkle.lunaspring.API.Util.utilities.Utils;
 import org.satellite.dev.progiple.lightbp.LightBP;
 
 import java.io.File;

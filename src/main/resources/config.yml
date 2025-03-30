@@ -68,3 +68,5 @@ messages:
   collectReward: []
   completeLevel:
     - "{0} {1}"
+  showMessage: []
+  disableMessage: []

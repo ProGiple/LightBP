@@ -4,7 +4,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.novasparkle.lunaspring.Util.managers.RegionManager;
+import org.novasparkle.lunaspring.API.Util.managers.RegionManager;
 import org.satellite.dev.progiple.lightbp.configs.Config;
 import org.satellite.dev.progiple.lightbp.configs.PlayerData;
 import org.satellite.dev.progiple.lightbp.progress.BasicHandler;
@@ -17,6 +17,7 @@ public class BlockBreakHandler extends BasicHandler {
     @EventHandler
     public void onBreak(BlockBreakEvent e) {
         Player player = e.getPlayer();
+        if (e.isCancelled()) return;
 
         String nick = player.getName();
         PlayerData playerData = PlayerData.getData().get(nick);

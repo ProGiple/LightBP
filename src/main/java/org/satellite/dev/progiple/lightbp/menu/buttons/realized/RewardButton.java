@@ -4,8 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.novasparkle.lunaspring.Util.LunaMath;
-import org.novasparkle.lunaspring.Util.Utils;
+import org.novasparkle.lunaspring.API.Util.utilities.LunaMath;
+import org.novasparkle.lunaspring.API.Util.utilities.Utils;
 import org.satellite.dev.progiple.lightbp.Status;
 import org.satellite.dev.progiple.lightbp.configs.Config;
 import org.satellite.dev.progiple.lightbp.configs.PlayerData;
@@ -41,7 +41,7 @@ public class RewardButton extends Button {
             this.setDisplayName(this.getDisplayName() + Utils.color(Config.getString("messages.reward_denied")));
     }
 
-    @Override
+    @Override @SuppressWarnings("deprecation")
     public boolean click(Player player) {
         if (this.isPremium && !player.hasPermission("lightbp.premium")) {
             Config.sendMessage(player, "noPremium");
@@ -51,8 +51,15 @@ public class RewardButton extends Button {
 
         switch (this.status) {
             case THIS_IS -> {
-                this.commands.forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-                        command.replace("{player}", player.getName())));
+                this.commands.forEach(command -> {
+                    String line = command
+                            .replace("broadcast ", "")
+                            .replace("msg ", "")
+                            .replace("{player}", player.getName());
+                    if (command.startsWith("broadcast ")) Bukkit.broadcastMessage(Utils.color(line));
+                    else if (command.startsWith("msg ")) player.sendMessage(Utils.color(line));
+                    else Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("{player}", player.getName()));
+                });
                 this.status = Status.COMPLETED;
                 this.setMaterial(Material.getMaterial(Config.getString("items.reward_collected")));
 

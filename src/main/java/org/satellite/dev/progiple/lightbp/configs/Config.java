@@ -3,7 +3,7 @@ package org.satellite.dev.progiple.lightbp.configs;
 import lombok.experimental.UtilityClass;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
-import org.novasparkle.lunaspring.Configuration.IConfig;
+import org.novasparkle.lunaspring.API.Configuration.IConfig;
 import org.satellite.dev.progiple.lightbp.LightBP;
 import org.satellite.dev.progiple.lightbp.progress.BasicHandler;
 

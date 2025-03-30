@@ -1,4 +1,4 @@
-package org.satellite.dev.progiple.lightbp;
+package org.satellite.dev.progiple.lightbp.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -6,8 +6,8 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.novasparkle.lunaspring.Menus.MenuManager;
-import org.novasparkle.lunaspring.Util.LunaMath;
+import org.novasparkle.lunaspring.API.Menus.MenuManager;
+import org.novasparkle.lunaspring.API.Util.utilities.LunaMath;
 import org.satellite.dev.progiple.lightbp.configs.Config;
 import org.satellite.dev.progiple.lightbp.configs.PageConfig;
 import org.satellite.dev.progiple.lightbp.configs.PlayerData;

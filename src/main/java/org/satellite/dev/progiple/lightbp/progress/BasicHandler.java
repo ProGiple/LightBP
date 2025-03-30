@@ -4,7 +4,7 @@ import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.novasparkle.lunaspring.Util.LunaMath;
+import org.novasparkle.lunaspring.API.Util.utilities.LunaMath;
 import org.satellite.dev.progiple.lightbp.configs.Config;
 import org.satellite.dev.progiple.lightbp.configs.PlayerData;
 

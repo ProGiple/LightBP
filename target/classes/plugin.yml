@@ -1,5 +1,5 @@
 name: LightBP
-version: '1.0.3'
+version: '1.0.5'
 main: org.satellite.dev.progiple.lightbp.LightBP
 api-version: '1.16'
 depend:
@@ -20,6 +20,14 @@ commands:
       - pass
       - lbpass
       - battlep
+      - battlepass
+  toggleexp:
+    aliases:
+      - te
+      - toggle
+      - bptoggle
+      - exptoggle
+      - et
 permissions:
   lightbp.admin:
     default: op

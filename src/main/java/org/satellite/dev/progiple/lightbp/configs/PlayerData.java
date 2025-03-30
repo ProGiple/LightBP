@@ -3,8 +3,8 @@ package org.satellite.dev.progiple.lightbp.configs;
 import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.novasparkle.lunaspring.Configuration.Configuration;
-import org.novasparkle.lunaspring.Util.LunaMath;
+import org.novasparkle.lunaspring.API.Configuration.Configuration;
+import org.novasparkle.lunaspring.API.Util.utilities.LunaMath;
 import org.satellite.dev.progiple.lightbp.LightBP;
 
 import java.io.File;
@@ -36,6 +36,7 @@ public class PlayerData {
             this.config.set("level", 1);
             this.config.set("collected_default_rewards", new ArrayList<>());
             this.config.set("collected_premium_rewards", new ArrayList<>());
+            this.config.set("disabled_message", false);
             this.config.save();
         }
         data.put(this.nick, this);
@@ -49,6 +50,10 @@ public class PlayerData {
 
     public int getInt(String path) {
         return this.config.getInt(path);
+    }
+
+    public boolean getBoolean(String path) {
+        return this.config.getBoolean(path);
     }
 
     public List<Integer> getIntList(String path) {
@@ -72,7 +77,8 @@ public class PlayerData {
         }
         else {
             this.set("exp", nowExp + exp);
-            if (showMessages) Config.sendMessage(player, "upExp", String.valueOf(exp), String.valueOf(nowExp),
+            if (showMessages && this.getBoolean("disabled_message"))
+                Config.sendMessage(player, "upExp", String.valueOf(exp), String.valueOf(nowExp),
                     String.valueOf(nowExp + exp), String.valueOf(needExp), String.valueOf(level));
         }
         this.save();

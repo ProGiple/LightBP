@@ -2,7 +2,8 @@ package org.satellite.dev.progiple.lightbp.menu.buttons.realized;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.novasparkle.lunaspring.Menus.MenuManager;
+
+import org.novasparkle.lunaspring.API.Menus.MenuManager;
 import org.satellite.dev.progiple.lightbp.configs.Config;
 import org.satellite.dev.progiple.lightbp.configs.PageConfig;
 import org.satellite.dev.progiple.lightbp.menu.PMenu;

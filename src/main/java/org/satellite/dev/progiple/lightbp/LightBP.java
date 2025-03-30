@@ -1,13 +1,14 @@
 package org.satellite.dev.progiple.lightbp;
 
 import lombok.Getter;
-import org.novasparkle.lunaspring.Events.MenuHandler;
+import org.novasparkle.lunaspring.API.Util.Service.realized.NBTService;
+import org.novasparkle.lunaspring.API.Util.Service.realized.RegionService;
+import org.novasparkle.lunaspring.API.Util.managers.NBTManager;
+import org.novasparkle.lunaspring.API.Util.managers.RegionManager;
+import org.novasparkle.lunaspring.LunaPlugin;
 import org.novasparkle.lunaspring.LunaSpring;
-import org.novasparkle.lunaspring.Util.Service.realized.NBTService;
-import org.novasparkle.lunaspring.Util.Service.realized.RegionService;
-import org.novasparkle.lunaspring.Util.managers.NBTManager;
-import org.novasparkle.lunaspring.Util.managers.RegionManager;
-import org.novasparkle.lunaspring.other.LunaPlugin;
+import org.satellite.dev.progiple.lightbp.commands.Command;
+import org.satellite.dev.progiple.lightbp.commands.ToggleCommand;
 import org.satellite.dev.progiple.lightbp.configs.Config;
 import org.satellite.dev.progiple.lightbp.configs.PageConfig;
 import org.satellite.dev.progiple.lightbp.configs.PlayerData;
@@ -52,12 +53,13 @@ public final class LightBP extends LunaPlugin {
             return "";
         });
         this.registerTabExecutor(new Command(), "lightbp");
+        this.registerCommand(new ToggleCommand(), "toggleexp");
 
-        NBTService nbtService = new NBTService();
+        NBTService nbtService = new NBTService(this);
         LunaSpring.getServiceProvider().register(nbtService);
         NBTManager.init(nbtService);
 
-        RegionService regionService = new RegionService();
+        RegionService regionService = new RegionService(this);
         LunaSpring.getServiceProvider().register(regionService);
         RegionManager.init(regionService);
     }
